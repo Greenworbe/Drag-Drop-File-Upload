@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drag & Drop File Upload</title>
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    
+    <div class="container">
+      <form method ="post" enctype='multipart/form-data'>
+        <input type="file" accept="image/*" id="upload-button" name="imagefile" value="{{request.form.imagefile}}"/>
+        <label for="upload-button"
+          ><i class="fa-solid fa-upload"></i>&nbsp; Choose Or Drop Photos
+        </label>
+      </form>
+      
+      <div id="error"></div>
+      <div id="image-display" "></div>
+    </div>
+
+    <!-- Top Navigation -->
+    <div class="topnav">
+      <a class="active" href="#home">Home</a>
+      <a href="#news">News</a>
+      <a href="#contact">Contact</a>
+      <a href="#about">About</a>
+    </div>
+
+    <!-- Script -->
+    <script src="/static/script.js"></script>
+
+    <!-- Buttons for checking and reset -->
+    <script>
+      function clearcontent(elementID) {
+          document.getElementById(elementID).innerHTML = "";
+          
+      }
+      
+    </script>
+    
+    <button class="button button_reset" onclick = "clearcontent('image-display')">Reset</button>
+
+    <div>
+      <!-- <button class="button button_check" type = "submit" onclick ="window.location.href='{{url_for('predict')}}';"> Check </button> -->
+      <button><a href="/predict" class="button button_check" action = "/predict"> Check</a></button>
+    </div>
+  
+
+
+      <!-- Output box for the prediction result -->
+    <form>
+      
+      <output id= "output_display"  type = "submit" name="display"></output>
+      
+    </form>
+      
+
+  </body>
+</html>
