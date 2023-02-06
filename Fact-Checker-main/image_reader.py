@@ -12,11 +12,16 @@ class ImageReader:
         self.reader = easyocr.Reader(['en', 'tl'], recog_network='english_g2', gpu=True)
 
     # Extracts text from the image using a library called easyocr
-    def read_img(self, path):
-        result = self.reader.readtext(path, detail = 1, paragraph=True)
+    def read_img(self, img):
 
-        img = Image.open(path)
-        img_arr = np.array(img)
+        result = self.reader.readtext(img, detail = 1, paragraph=True)
+
+        if type(img) == str:
+            img = Image.open(img)
+            img_arr = np.array(img)
+        else:
+            img_arr = img
+
         spacer = 100
         font = cv2.FONT_HERSHEY_SIMPLEX
         for detection in result:
@@ -27,10 +32,10 @@ class ImageReader:
             img = cv2.putText(img_arr ,text,(20,spacer), font, 0.5,(0,255,0),2,cv2.LINE_AA)
             spacer+=15
         #plt.ion()
-        plt.imshow(img_arr)
-        plt.show()
+        # plt.imshow(img_arr)
+        # plt.show()
         #plt.pause(0.001)
-        print('image shown')
+        # print('image shown')
         message = [row[1] for row in result]
         message = ' '.join(message)
         print('text extracted')
