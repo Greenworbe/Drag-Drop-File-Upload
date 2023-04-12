@@ -17,14 +17,12 @@
     <link rel="stylesheet" href="/static/style.css" />
   </head>
   <body>
-    
     <div class="container">
-      <form method ="post" enctype='multipart/form-data'>
-        <input type="file" accept="image/*" id="upload-button" name="imagefile" value="{{request.form.imagefile}}"/>
-        <label for="upload-button"
-          ><i class="fa-solid fa-upload"></i>&nbsp; Choose Or Drop Photos
-        </label>
-      </form>
+      <input type="file" accept="image/*" id="upload-button" name="imagefile" value="{{request.form.imagefile}}"/>
+      <label for="upload-button"
+        ><i class="fa-solid fa-upload"></i>&nbsp; Choose Or Drop Photos
+      </label>
+    
       
       <div id="error"></div>
       <div id="image-display" "></div>
