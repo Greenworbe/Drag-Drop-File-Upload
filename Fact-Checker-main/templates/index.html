@@ -17,16 +17,22 @@
     <link rel="stylesheet" href="/static/style.css" />
   </head>
   <body>
-    <div class="container">
-      <input type="file" accept="image/*" id="upload-button" name="imagefile" value="{{request.form.imagefile}}"/>
-      <label for="upload-button"
-        ><i class="fa-solid fa-upload"></i>&nbsp; Choose Or Drop Photos
-      </label>
-    
-      
-      <div id="error"></div>
-      <div id="image-display" "></div>
-    </div>
+    <form action = {{ url_for('predict') }} method ="post" enctype='multipart/form-data'>
+      <div class="container">
+          <label for="upload-button"
+            ><i class="fa-solid fa-upload"></i>&nbsp; Choose Or Drop Photos
+            <input type="file" accept="image/*" id="upload-button" name="imagefile" value="{{request.form.imagefile}}" />
+          </label>
+        <div id="error"></div>
+        <div id="image-display"></div>
+      </div>
+
+      <div>
+        <!-- <button class="button button_check" type = "submit" onclick ="window.location.href='{{url_for('predict')}}';"> Check </button> -->
+        <input type="submit"  class="button button_check" value="Check">
+      </div>
+    </form>
+
 
     <!-- Top Navigation -->
     <div class="topnav">
@@ -50,10 +56,7 @@
     
     <button class="button button_reset" onclick = "clearcontent('image-display')">Reset</button>
 
-    <div>
-      <!-- <button class="button button_check" type = "submit" onclick ="window.location.href='{{url_for('predict')}}';"> Check </button> -->
-      <button><a href="/predict" class="button button_check" action = "/predict"> Check</a></button>
-    </div>
+
   
 
 
